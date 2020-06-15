@@ -1,4 +1,3 @@
-# Sms-reg API [Python]
   Python API для [сервиса активации симкарт](https://sms-reg.com).
   
   Оригинальный [REST](http://sms-reg.com/docs/API.html).
@@ -10,6 +9,7 @@
 ### Документация:
 * Авторизация клиента
 ```python
+from sms_reg_api import Sms
 sms = Sms(client_key)  # str: client_key
 ```
 Метод             | Описание
@@ -29,6 +29,7 @@ set_used(tzid)        | Сообщает, что номер был исполь�
 ### Пример:
 Покупка номера телеграм:
 ```python
+from sms_reg_api import Sms
 sms = Sms('2d08p37k6bkwjpj1pqgwdsbg9nuy2g1y')
 print(sms.balance())
 tzid = sms.get_num('telegram', country='all')
