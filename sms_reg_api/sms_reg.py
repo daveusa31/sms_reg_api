@@ -1,5 +1,6 @@
 import time
 import requests
+
 from sms_reg_api.exceptions import *
 
 
@@ -9,6 +10,7 @@ class Sms:
         self._check_auth()
 
     def _send(self, method, param=None):
+        
         response = requests.get(f'http://api.sms-reg.com/{method}.php?{param}&apikey={self._api_key}').json()
         if response['response'] == 'ERROR':
             raise MethodError(response.get('error_msg', None))
@@ -21,7 +23,7 @@ class Sms:
             raise BadToken('Wrong api key')
 
     def balance(self):
-        return self._send('getBalance')['balance']
+        return float(self._send('getBalance')['balance'])
 
     def set_rate(self, rate):
         return self._send('setRate', param=f'{float(rate)}')
